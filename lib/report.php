@@ -22,21 +22,19 @@ function process($data) {
                  $browser['platform'];
     }
 
-    if (!DB::add($parsed_url["host"],
-                 $parsed_url["path"],
-                 $parsed_url["query"],
-                 $data["document-uri"],
-                 $data["referrer"],
-                 $data["blocked-uri"],
-                 $violated,
-                 $data["violated-directive"],
-                 $data["original-policy"],
-                 $data["source-file"],
-                 $data["script-sample"],
-                 $data["line-number"],
-                 $browser)) {
-      exit;
-    }
+    DB::add($parsed_url["host"],
+            $parsed_url["path"],
+            $parsed_url["query"],
+            $data["document-uri"],
+            $data["referrer"],
+            $data["blocked-uri"],
+            $violated,
+            $data["violated-directive"],
+            $data["original-policy"],
+            $data["source-file"],
+            $data["script-sample"],
+            $data["line-number"],
+            $browser);
   }
 }
 ?>
