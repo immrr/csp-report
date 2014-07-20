@@ -1,0 +1,9 @@
+<?php
+
+define("DB_HOST",  "localhost");
+define("DB_USER",  "test");
+define("DB_PW",    "test");
+define("DB_DB",    "csp_report");
+define("DB_TABLE", "csp_report");
+
+?>
