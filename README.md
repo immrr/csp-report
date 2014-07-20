@@ -7,8 +7,7 @@ Csp-report parses CSP violation reports and stores them in a database.
 ## Setup
 
 1. Deploy csp-report to some webspace.
-2. Setup a mysql database and execute setup/db.sql in it.
-3. Configure your database in conf/conf.php using conf/conf.php.dist as a template.
+2. Configure your mysql database in conf/conf.php using conf/conf.php.dist as a template.
 
 ## Usage
 
