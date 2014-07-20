@@ -14,3 +14,10 @@ Csp_report parses CSP violation reports and stores them in a database.
 
 1. Append 'report-uri your.url/csp_report/report.php;' to your csp headers.
 2. Inspect the reports with you favorite database client.
+
+## Meta
+
+"git.immerda.ch/csp-report":https://git.immerda.ch/csp-report/
+
+(c) "immerda.ch":https://www.immerda.ch 2014. Released under GPL 3.0.
+
