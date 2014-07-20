@@ -1,6 +1,7 @@
 <?php
 
 include ROOT."lib/db.php";
+include ROOT."lib/getbrowser.php";
 
 function process($data) {
   $mysqli = DB::$mysqli;
@@ -15,7 +16,7 @@ function process($data) {
 
     if (!($stmt = $mysqli->prepare("INSERT INTO ".$table.
       "(timestamp, host, path, query, uri, referrer, blocked, violated, violated_directive, original_policy,
-        source, sample, line) VALUES (NOW(),?,?,?,?,?,?,?,?,?,?,?,?)"))) {
+        source, sample, line, browser) VALUES (NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?)"))) {
       error_log("Prepare failed: (" . $mysqli->errno . ") " . $mysqli->error);
       exit;
     }
@@ -25,7 +26,10 @@ function process($data) {
       $violated = $violated[0];
     }
 
-    if (!$stmt->bind_param("ssssssssssss",
+    $b = getBrowser();
+    $browser = $b['name'] . ", " . $b['version'] . ", " .$b['platform'];
+
+    if (!$stmt->bind_param("sssssssssssss",
                            $parsed_url["host"],
                            $parsed_url["path"],
                            $parsed_url["query"],
@@ -37,7 +41,8 @@ function process($data) {
                            $data["original-policy"],
                            $data["source-file"],
                            $data["script-sample"],
-                           $data["line-number"])) {
+                           $data["line-number"],
+                           $browser)) {
       error_log("Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error);
       exit;
     }

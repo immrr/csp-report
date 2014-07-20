@@ -11,4 +11,5 @@ create table csp_report(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         original_policy VARCHAR(511),
                         source VARCHAR(255),
                         sample VARCHAR(255),
-                        line VARCHAR(31));
+                        line VARCHAR(31),
+                        browser VARCHAR(127));
