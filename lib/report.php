@@ -20,7 +20,10 @@ function process($data) {
       exit;
     }
 
-    $violated = split(" ", $data["violated-directive"])[0];
+    $violated = explode(" ", $data["violated-directive"]);
+    if (sizeof($violated) > 0) {
+      $violated = $violated[0];
+    }
 
     if (!$stmt->bind_param("ssssssssssss",
                            $parsed_url["host"],
