@@ -40,6 +40,11 @@ class DB {
           if (self::$mysqli->query($setup)) {
             continue;
           } else {
+            if (self::$mysqli->errno == 1050) {
+              // Race condition: two threads tried to create the table at the same times
+              // -> Ignore error, table should be ready now.
+              continue;
+            }
             error_log("Create table failed: (" . self::$mysqli->errno . ") " . self::$mysqli->error);
             return false;
           }
