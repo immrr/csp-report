@@ -21,6 +21,8 @@ function process($data) {
     $violated = explode(" ", $data["violated-directive"]);
     if (sizeof($violated) > 0) {
       $violated = $violated[0];
+    } else {
+      $violated = '';
     }
 
     $browser = getBrowser();
