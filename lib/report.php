@@ -9,7 +9,14 @@ function process($data) {
   if ($data['csp-report']) {
     $data = $data['csp-report'];
 
-    $parsed_url = parse_url($data["document-uri"]);
+    if (isset($data["document-uri"])) {
+      $parsed_url = parse_url($data["document-uri"]);
+      $parsed_url = array_merge(
+        array("host" => "", "path" => "", "query" => ""),
+        $parsed_url);
+    } else {
+      return;
+    }
 
     $violated = explode(" ", $data["violated-directive"]);
     if (sizeof($violated) > 0) {
@@ -18,9 +25,22 @@ function process($data) {
 
     $browser = getBrowser();
     if ($browser) {
-      $browser = $browser['name'] . ", " . $browser['version'] . ", " .
+      $browser = $browser['name'] . ", " .
+                 $browser['version'] . ", " .
                  $browser['platform'];
     }
+
+    $data = array_merge(
+      array(
+        "document-uri"       => "",
+        "referrer"           => "",
+        "blocked-uri"        => "",
+        "violated-directive" => "",
+        "original-policy"    => "",
+        "source-file"        => "",
+        "script-sample"      => "",
+        "line-number"        => ""
+      ), $data);
 
     DB::add($parsed_url["host"],
             $parsed_url["path"],
