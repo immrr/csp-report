@@ -4,6 +4,10 @@
 
 function getBrowser()
 {
+    if (!isset($_SERVER) || !isset($_SERVER['HTTP_USER_AGENT'])) {
+      return false;
+    }
+
     $u_agent = $_SERVER['HTTP_USER_AGENT'];
     $bname = 'Unknown';
     $platform = 'Unknown';
