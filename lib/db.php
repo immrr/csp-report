@@ -21,11 +21,11 @@ class DB {
 
   public static function add($host, $path, $query, $uri, $referrer, $blocked_uri,
                              $violated, $violated_directive, $original_policy,
-                             $source, $sample, $line, $browser) {
+                             $source, $sample, $line, $browser, $ip) {
 
     $sql = "INSERT INTO ".self::$table."(timestamp, host, path, query, uri, referrer,
             blocked, violated, violated_directive, original_policy, source,
-            sample, line, browser) VALUES (NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            sample, line, browser, ip) VALUES (NOW(),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 
     $init_table = true;
@@ -57,7 +57,7 @@ class DB {
     if (!$stmt->bind_param("sssssssssssss",
                            $host, $path, $query, $uri, $referrer, $blocked_uri,
                            $violated, $violated_directive, $original_policy,
-                           $source, $sample, $line, $browser)) {
+                           $source, $sample, $line, $browser, $ip)) {
       error_log("Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error);
       return false;
     }
