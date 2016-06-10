@@ -31,6 +31,7 @@ function process($data) {
                  $browser['version'] . ", " .
                  $browser['platform'];
     }
+    $ip = getIP();
 
     $data = array_merge(
       array(
@@ -56,7 +57,8 @@ function process($data) {
             $data["source-file"],
             $data["script-sample"],
             $data["line-number"],
-            $browser);
+            $browser,
+            $ip);
   }
 }
 ?>
