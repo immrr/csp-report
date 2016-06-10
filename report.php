@@ -1,6 +1,6 @@
 <?php
 
-header("status: 204");
+header("HTTP/1.1 204 No Content");
 
 $data = file_get_contents('php://input');
 if (!$data) exit;
