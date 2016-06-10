@@ -54,7 +54,7 @@ class DB {
       }
     }
 
-    if (!$stmt->bind_param("sssssssssssss",
+    if (!$stmt->bind_param("ssssssssssssss",
                            $host, $path, $query, $uri, $referrer, $blocked_uri,
                            $violated, $violated_directive, $original_policy,
                            $source, $sample, $line, $browser, $ip)) {
