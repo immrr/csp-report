@@ -91,4 +91,12 @@ function getBrowser()
         'pattern'    => $pattern
     );
 }
+
+// returns client IP address
+function getIP() {
+    if (!isset($_SERVER) || !isset($_SERVER['REMOTE_ADDR'])) {
+      return false;
+    }
+    return $_SERVER['REMOTE_ADDR'];
+}
 ?>
