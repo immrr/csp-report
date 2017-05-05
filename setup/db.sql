@@ -13,4 +13,4 @@ create table csp_report(id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
                         sample VARCHAR(255),
                         line VARCHAR(31),
                         browser VARCHAR(127),
-                        ip VARCHAR(45);
+                        ip VARCHAR(45));
