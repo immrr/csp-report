@@ -94,9 +94,13 @@ function getBrowser()
 
 // returns client IP address
 function getIP() {
-    if (!isset($_SERVER) || !isset($_SERVER['REMOTE_ADDR'])) {
-      return false;
+    if (isset($_SERVER)) {
+        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
+            return $_SERVER["HTTP_X_FORWARDED_FOR"];
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            return $_SERVER['REMOTE_ADDR'];
+        }
     }
-    return $_SERVER['REMOTE_ADDR'];
+    return false;
 }
 ?>
